@@ -14,7 +14,10 @@ from .permissions import IsStaffOrSuperUser
 from rest_framework.response import Response
 from .utils import send_gmail_email
 from smtplib import SMTPException
-
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+from django.contrib.auth import authenticate
+from rest_framework.permissions import AllowAny
 
 class RolViewSet(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
@@ -129,3 +132,21 @@ class RegisterDeliveryView(APIView):
             serializer.save()
             return Response({"detail": "Delivery registrado exitosamente."}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CustomAuthTokenView(ObtainAuthToken):
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        correo = request.data.get('correo')
+        password = request.data.get('password')
+
+        if not correo or not password:
+            return Response({'detail': 'Debe ingresar correo y contraseña'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(request, correo=correo, password=password)
+
+        if user is None:
+            return Response({'detail': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
+
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key, 'user_id': user.id, 'correo': user.correo})

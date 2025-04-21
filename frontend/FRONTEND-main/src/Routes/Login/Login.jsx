@@ -65,7 +65,7 @@ export const Login = ({ onClose }) => {
         </form>
         <p className="text-sm text-center text-gray-500 mt-4">
           ¿No tienes cuenta?{" "}
-          <Link to="/Registers" className="text-indigo-600 hover:underline">
+          <Link to="/register" className="text-indigo-600 hover:underline">
             Registrar
           </Link>
         </p>

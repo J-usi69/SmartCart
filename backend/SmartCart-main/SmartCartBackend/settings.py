@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'SmartCartBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smartcart',          # nombre de tu base de datos
+        'NAME': 'SmartCart',          # nombre de tu base de datos
         'USER': 'postgres',           # tu usuario de PostgreSQL
-        'PASSWORD': '0128753',           # tu contraseña real
+        'PASSWORD': 'Oyonegr051',           # tu contraseña real
         'HOST': 'localhost',
         'PORT': '5432',
     }

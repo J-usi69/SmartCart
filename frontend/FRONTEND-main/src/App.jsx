@@ -1,7 +1,10 @@
+import { Routes, Route, Link } from "react-router-dom";
+import { Login } from "./Routes/Login/Login";
+import { Registrar } from "./Routes/Registros/Registrar";
+import './App.css';
 
-import '/styles/style.css';
-
-function App() {
+// Página principal (antes Home.jsx)
+function Home() {
   return (
     <div className="container">
       {/* Header */}
@@ -11,10 +14,12 @@ function App() {
         </div>
         <nav className="navigation">
           <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><Link to="/">Inicio</Link></li>
             <li><a href="#">Productos</a></li>
             <li><a href="#">Servicios</a></li>
             <li><a href="#">Contacto</a></li>
+            <li><Link to="/login">Iniciar Sesión</Link></li>
+            <li><Link to="/register">Registrarse</Link></li>
           </ul>
         </nav>
       </header>
@@ -36,6 +41,16 @@ function App() {
         <p>© 2025 Smart Cart. Todos los derechos reservados.</p>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Registrar />} />
+    </Routes>
   );
 }
 

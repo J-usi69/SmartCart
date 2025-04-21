@@ -11,6 +11,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.conf import settings
 from django.conf.urls.static import static
+from users.views import CustomAuthTokenView
 
 router = routers.DefaultRouter()
 router.register(r'roles', RolViewSet)
@@ -48,6 +49,7 @@ urlpatterns = [
     path('api/checkout/', CheckoutView.as_view(), name='checkout'),
     path('api/stripe/webhook/', StripeWebhookView.as_view(), name='stripe-webhook'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('api/login/', CustomAuthTokenView.as_view(), name='custom_login'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
