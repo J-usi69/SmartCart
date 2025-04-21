@@ -1,4 +1,4 @@
-const BASE_URL = "https://backenddjango-production-c48c.up.railway.app";
+const BASE_URL = "smartcart-production.up.railway.app";
 
 export async function loginUser(correo, password) {
   const response = await fetch(`${BASE_URL}/api-token-auth/`, {

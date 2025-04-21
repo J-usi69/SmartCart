@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'SmartCartBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SmartCart',          # nombre de tu base de datos
-        'USER': 'postgres',           # tu usuario de PostgreSQL
-        'PASSWORD': 'Oyonegr051',           # tu contraseña real
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME':     os.environ.get('DB_NAME',     'SmartCart'),
+        'USER':     os.environ.get('DB_USER',     'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'Oyonegr051'),
+        'HOST':     os.environ.get('DB_HOST',     'localhost'),
+        'PORT':     os.environ.get('DB_PORT',     '5432'),
     }
 }
 
@@ -170,6 +170,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
+    'https://smartcart-production.up.railway.app',
+    'https://practical-gratitude-production.up.railway.app',
+
 ]
 
 CORS_ALLOW_CREDENTIALS = True
