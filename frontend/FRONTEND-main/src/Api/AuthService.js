@@ -1,13 +1,13 @@
 const BASE_URL = "https://backenddjango-production-c48c.up.railway.app";
 
-export async function loginUser(username, password) {
+export async function loginUser(correo, password) {
   const response = await fetch(`${BASE_URL}/api-token-auth/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
+      correo,
       password,
     }),
   });
